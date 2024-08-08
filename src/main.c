@@ -3,6 +3,7 @@
 #include <getopt.h>
 
 #include "common.h"
+#include "file.h"
 
 void print_usage(char *argv[]) {
   printf("Usage: %s -n -f <database_file>\n", argv[0]);
