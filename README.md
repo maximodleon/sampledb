@@ -1,4 +1,4 @@
-![Build](https://github.com/maximodleon/sampledb/actions/workflows/build.yml/badge.svg)
+![Build](https://github.com/maximodleon/sampledb/actions/workflows/build.yaml/badge.svg)
 
 # How to run the tests
 
