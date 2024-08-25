@@ -1,9 +1,17 @@
 #include "munit.h"
+#include "file.h"
 #include <stdlib.h>
 
 static MunitResult;
 
 test_dbheader(const MunitParameter params[], void* data) {
+  int dbfd = -1;
+  int *filepath = "test.db";
+  dbfd = create_db_file(filepath);
+
+  munit_assert_int(dbfd, !=, -1);
+
+  return MUNIT_OK;
 }
 
 static MunitTest tests[] = {
