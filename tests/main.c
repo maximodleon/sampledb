@@ -9,7 +9,7 @@ test_dbheader(const MunitParameter params[], void* data) {
   int *filepath = "test.db";
   dbfd = create_db_file(filepath);
 
-  munit_assert_int(dbfd, ==, -1);
+  munit_assert_int(dbfd, !=, -1);
 
   return MUNIT_OK;
 }
