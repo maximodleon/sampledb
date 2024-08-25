@@ -11,12 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup pythong
+      - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
       - name: Install dependencies
-        run: apt install meson ninja
+        run: pip install meson ninja
       - name: Configure project
         working-directory: ./tests
         run: meson setup testdir
