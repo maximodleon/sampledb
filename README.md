@@ -1,4 +1,4 @@
-![Make default](https://github.com/maximodleon/sampledb/actions/workflows/c-make.yml/badge.svg)
+![Build](https://github.com/maximodleon/sampledb/actions/workflows/build.yml/badge.svg)
 
 # How to run the tests
 
