@@ -16,6 +16,8 @@ struct employee_t {
   unsigned int hours;
 };
 
+int search_employees(char *searchstring, struct dbheader_t *dbhdr, struct employee_t *employees);
+
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring);
 void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees);
 int create_db_header(int fd, struct dbheader_t **headerOut);

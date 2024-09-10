@@ -138,6 +138,25 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
   *headerOut = header;
 }
 
+
+int search_employees(char *searchstring, struct dbheader_t *dbhdr, struct employee_t *employees) {
+   int i = 0;
+
+  for(; i < dbhdr->count; i++) {
+
+    if (strcmp(employees[i].name, searchstring) == 0) {
+      printf("Employee %d\n", i);
+      printf("\tName: %s\n", employees[i].name);
+      printf("\tAddress: %s\n", employees[i].address);
+      printf("\tHours: %d\n", employees[i].hours);
+      return STATUS_SUCCESS;
+    }
+  }
+
+  printf("No record found with that name");
+  return STATUS_ERROR;
+}
+
 int create_db_header(int fd, struct dbheader_t **headerOut) {
   struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
 

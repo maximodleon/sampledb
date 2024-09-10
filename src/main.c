@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <getopt.h>
 
@@ -15,6 +16,7 @@ void print_usage(char *argv[]) {
 int main(int argc, char *argv[]) {
   char *filepath = NULL;
   char *addstring = NULL;
+  char *searchstring = NULL;
   bool list = false;
   bool newfile;
   int c;
@@ -22,7 +24,7 @@ int main(int argc, char *argv[]) {
   struct dbheader_t *dbhdr = NULL;
   struct employee_t *employees = NULL;
 
-  while((c = getopt(argc, argv, "nf:a:l")) != -1) {
+  while((c = getopt(argc, argv, "nf:a:ls:")) != -1) {
     switch (c) {
       case 'n':
         newfile = true;
@@ -32,6 +34,9 @@ int main(int argc, char *argv[]) {
         break;
       case 'a':
         addstring = optarg;
+        break;
+      case 's':
+        searchstring = optarg;
         break;
       case 'l':
          list = true;
@@ -81,6 +86,10 @@ int main(int argc, char *argv[]) {
 
   if(list) {
     list_employees(dbhdr, employees);
+  }
+
+  if(searchstring) {
+    search_employees(searchstring, dbhdr, employees);
   }
 
   if(addstring) {
