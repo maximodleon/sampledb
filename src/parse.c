@@ -154,7 +154,19 @@ int search_employees(char *searchstring, struct dbheader_t *dbhdr, struct employ
     }
   }
 
-  printf("No record found with that name");
+  return STATUS_ERROR;
+}
+
+
+int delete_employee(char *searchstring, struct dbheader_t *dbhdr, struct employee_t *employees) {
+   int i = 0;
+
+  for(; i < dbhdr->count; i++) {
+    if (strcmp(employees[i].name, searchstring) == 0) {
+      // TODO delete
+    }
+  }
+
   return STATUS_ERROR;
 }
 

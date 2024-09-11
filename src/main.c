@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
   char *filepath = NULL;
   char *addstring = NULL;
   char *searchstring = NULL;
+  char *delete_search_string = NULL;
   bool list = false;
   bool newfile;
   int c;
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]) {
   struct dbheader_t *dbhdr = NULL;
   struct employee_t *employees = NULL;
 
-  while((c = getopt(argc, argv, "nf:a:ls:")) != -1) {
+  while((c = getopt(argc, argv, "nf:a:ls:d:")) != -1) {
     switch (c) {
       case 'n':
         newfile = true;
@@ -37,6 +38,9 @@ int main(int argc, char *argv[]) {
         break;
       case 's':
         searchstring = optarg;
+        break;
+      case 'd':
+        delete_search_string = optarg;
         break;
       case 'l':
          list = true;
@@ -89,7 +93,13 @@ int main(int argc, char *argv[]) {
   }
 
   if(searchstring) {
-    search_employees(searchstring, dbhdr, employees);
+    if(search_employees(searchstring, dbhdr, employees) == STATUS_ERROR) {
+      printf("No records found");
+    }
+  }
+
+  if(delete_search_string) {
+    delete_employee(delete_search_string, dbhdr, employees);
   }
 
   if(addstring) {
