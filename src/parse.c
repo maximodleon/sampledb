@@ -6,8 +6,8 @@
 #include <sys/stat.h>
 #include <string.h>
 
-#include "common.h"
-#include "parse.h"
+#include "../include/common.h"
+#include "../include/parse.h"
 
 
 void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
@@ -48,7 +48,7 @@ int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employe
 
   struct employee_t *employees = calloc(count, sizeof(struct employee_t));
 
-  if (employees == -1) {
+  if (employees == NULL) {
      printf("Malloc failed\n");
      return STATUS_ERROR;
   }
@@ -98,7 +98,7 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
 
   struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
 
-  if(header == -1) {
+  if(header == NULL) {
     printf("Malloc failed create db header\n");
     return STATUS_ERROR;
   }
@@ -136,6 +136,8 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
   }
 
   *headerOut = header;
+
+  return STATUS_SUCCESS;
 }
 
 
@@ -159,7 +161,7 @@ int search_employees(char *searchstring, struct dbheader_t *dbhdr, struct employ
 int create_db_header(int fd, struct dbheader_t **headerOut) {
   struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
 
-  if(header == -1) {
+  if(header == NULL) {
     printf("Malloc failed to created db header\n");
     return STATUS_ERROR;
   }
