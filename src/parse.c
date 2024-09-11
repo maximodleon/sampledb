@@ -149,7 +149,6 @@ int search_employees(char *searchstring, struct dbheader_t *dbhdr, struct employ
       printf("\tName: %s\n", employees[i].name);
       printf("\tAddress: %s\n", employees[i].address);
       printf("\tHours: %d\n", employees[i].hours);
-      return STATUS_SUCCESS;
     }
   }
 
