@@ -163,11 +163,21 @@ int delete_employee(char *searchstring, struct dbheader_t *dbhdr, struct employe
 
   for(; i < dbhdr->count; i++) {
     if (strcmp(employees[i].name, searchstring) == 0) {
-      // TODO delete
+      // we just got the index of the item we want to delete
+      break;
     }
   }
 
-  return STATUS_ERROR;
+  // loop from the index of the item until the
+  // shifting left every item
+  for (int j = i; j < dbhdr->count - 1; j++) {
+    employees[j] = employees[j + 1];
+  }
+
+  dbhdr->count--;
+  employees = realloc(employees, dbhdr->count * sizeof(struct employee_t));
+
+  return STATUS_SUCCESS;
 }
 
 int create_db_header(int fd, struct dbheader_t **headerOut) {
